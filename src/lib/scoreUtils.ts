@@ -23,3 +23,5 @@ export function calculateScore(tier: string, rank: string, lp: number): number {
   const rankScore = rankMap.get(rank.toUpperCase()) || 0;
   return tierScore + rankScore + lp;
 }
+
+// idk some small modifiaation for testing
