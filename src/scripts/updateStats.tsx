@@ -31,7 +31,6 @@ async function updateUser(
   const collection = db.collection("info");
 
   try {
-    // Updating data
     const filter = { username: username };
     const newProperties = {
       tier: tier,
@@ -45,13 +44,27 @@ async function updateUser(
     console.log(`Matched count: ${result.matchedCount}`);
     console.log(`Modified count: ${result.modifiedCount}`);
 
-    // Fetch updated data
     const updatedInfo = await collection.find({}).toArray();
     console.log(updatedInfo);
-    // client.close();
   } catch (error) {
     console.log("Error updating data:", error);
-    throw error; // Rethrow the error for proper error handling
+    throw error;
+  }
+}
+
+async function insertHistory(player: Participant): Promise<void> {
+  const client = await clientPromise;
+  const db = client.db("userdata");
+  const collection = db.collection("user_history");
+
+  try {
+    await collection.insertOne({
+      ...player,
+      timestamp: new Date(),
+    });
+    console.log(`Snapshot saved for ${player.username}`);
+  } catch (error) {
+    console.error("Error inserting snapshot:", error);
   }
 }
 
@@ -98,6 +111,7 @@ async function updateStats(): Promise<void> {
   }
   updatedStats.sort((a, b) => b.orderingScore - a.orderingScore);
   for (const player of updatedStats) {
+    await insertHistory(player);
     await updateUser(
       player.username,
       player.tag,

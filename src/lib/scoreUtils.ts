@@ -1,21 +1,21 @@
 export const tierMap = new Map<string, number>([
-  ["IRON", 1000],
-  ["BRONZE", 2000],
-  ["SILVER", 3000],
-  ["GOLD", 4000],
-  ["PLATINUM", 5000],
-  ["EMERALD", 6000],
-  ["DIAMOND", 7000],
-  ["MASTER", 8000],
-  ["GRANDMASTER", 9000],
-  ["CHALLENGER", 10000],
+  ["IRON", 0],
+  ["BRONZE", 400],
+  ["SILVER", 800],
+  ["GOLD", 1200],
+  ["PLATINUM", 1600],
+  ["EMERALD", 2000],
+  ["DIAMOND", 2400],
+  ["MASTER", 2800],
+  ["GRANDMASTER", 2800],
+  ["CHALLENGER", 2800],
 ]);
 
 export const rankMap = new Map<string, number>([
-  ["IV", 100],
-  ["III", 200],
-  ["II", 300],
-  ["I", 400],
+  ["IV", 0],
+  ["III", 100],
+  ["II", 200],
+  ["I", 300],
 ]);
 
 export function calculateScore(tier: string, rank: string, lp: number): number {
@@ -23,5 +23,3 @@ export function calculateScore(tier: string, rank: string, lp: number): number {
   const rankScore = rankMap.get(rank.toUpperCase()) || 0;
   return tierScore + rankScore + lp;
 }
-
-// idk some small modifiaation for testing

@@ -26,22 +26,22 @@ export default function Navbar() {
               Home
             </Link>
             <Link
-              href="/leaderboard"
+              href="/player_distribution"
               className="hover:text-[var(--color-accent)] transition-colors"
             >
-              Leaderboard
+              Player Distribution
             </Link>
             <Link
-              href="/rules"
+              href="/user_stats"
               className="hover:text-[var(--color-accent)] transition-colors"
             >
-              Rules
+              User Stats
             </Link>
             <Link
-              href="/submit"
+              href="/history"
               className="hover:text-[var(--color-accent)] transition-colors"
             >
-              Submit Snapshot
+              Snapshot History
             </Link>
           </div>
         </div>

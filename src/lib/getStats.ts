@@ -37,6 +37,9 @@ export async function getStats(
     const statsRes = await fetch(
       `https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/${summonerId}${apiKey}`
     );
+    console.log(
+      `https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/${summonerId}${apiKey}`
+    );
     if (!statsRes.ok) {
       throw new Error(`Failed to fetch ranked stats: ${statsRes.statusText}`);
     }
