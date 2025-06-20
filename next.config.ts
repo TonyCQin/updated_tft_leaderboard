@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+// next.config.js
+const { withNetlify } = require("@netlify/next");
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  // Your Next.js config options here
+  reactStrictMode: true,
+  images: {
+    domains: ["example.com"],
+  },
 };
 
-export default nextConfig;
+module.exports = withNetlify(nextConfig);
