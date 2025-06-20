@@ -2,7 +2,16 @@ import { RankPlayer } from "../components/RankLeaderboard";
 import { SnapshotPlayer } from "@/components/SnapshotLeaderboard";
 import { calculateScore } from "./scoreUtils";
 
-export function formatRank(raw: any[]): RankPlayer[] {
+interface RawPlayerData {
+  username: string;
+  tag: string;
+  tier: string;
+  rank: string;
+  leaguePoints: number;
+  snapshotPoints: number;
+}
+
+export function formatRank(raw: RawPlayerData[]): RankPlayer[] {
   return raw
     .map((player) => ({
       username: player.username,
@@ -19,7 +28,7 @@ export function formatRank(raw: any[]): RankPlayer[] {
     .sort((a, b) => b.orderingScore - a.orderingScore);
 }
 
-export function formatSnapshot(raw: any[]): SnapshotPlayer[] {
+export function formatSnapshot(raw: RawPlayerData[]): SnapshotPlayer[] {
   return raw
     .map((player) => ({
       username: player.username,

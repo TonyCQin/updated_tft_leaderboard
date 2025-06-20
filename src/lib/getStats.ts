@@ -5,7 +5,7 @@ export interface RankedTFTStats {
   tier: string;
   rank: string;
   leaguePoints: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export async function getStats(

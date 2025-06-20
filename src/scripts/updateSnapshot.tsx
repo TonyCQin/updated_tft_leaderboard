@@ -1,7 +1,13 @@
 import { getData } from "@/lib/getData";
 import { updateDatabaseSnapshotPoints } from "@/lib/updateDBSnapshot";
 
-function compareSnapshot(a: any, b: any): number {
+interface Player {
+  username: string;
+  orderingScore: number;
+  snapshotPoints: number;
+}
+
+function compareSnapshot(a: Player, b: Player): number {
   return b.orderingScore - a.orderingScore;
 }
 

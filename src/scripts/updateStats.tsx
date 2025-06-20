@@ -3,11 +3,6 @@ import { getStats } from "@/lib/getStats";
 import clientPromise from "@/lib/mongodb";
 import { calculateScore } from "@/lib/scoreUtils";
 
-type UsernameEntry = {
-  name: string;
-  tag: string;
-};
-
 type Participant = {
   username: string;
   tag: string;
@@ -71,7 +66,7 @@ async function insertHistory(player: Participant): Promise<void> {
 async function updateStats(): Promise<void> {
   const { info } = await getData();
   const users = JSON.parse(info.userinfo);
-  let updatedStats = [];
+  const updatedStats = [];
   for (const user of users) {
     await new Promise((resolve) => setTimeout(resolve, 500));
 

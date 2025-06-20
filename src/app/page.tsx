@@ -1,25 +1,9 @@
 "use client";
-import Image from "next/image";
 import Navbar from "../components/Navbar";
-import RankLeaderboard, { RankPlayer } from "../components/RankLeaderboard";
-import SnapshotLeaderboard, {
-  SnapshotPlayer,
-} from "../components/SnapshotLeaderboard";
+import RankLeaderboard from "../components/RankLeaderboard";
+import SnapshotLeaderboard from "../components/SnapshotLeaderboard";
 import { formatRank, formatSnapshot } from "@/lib/formatData";
 import { useEffect, useState } from "react";
-
-let player1: RankPlayer = {
-  username: "test",
-  tag: "NA1",
-  tier: "IV",
-  rank: "Gold",
-  leaguePoints: 29,
-};
-
-let player2: SnapshotPlayer = {
-  username: "test",
-  snapshotPoints: 12,
-};
 
 export default function Home() {
   const [playerData, setData] = useState([]);

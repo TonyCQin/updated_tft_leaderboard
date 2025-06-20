@@ -51,7 +51,7 @@ async function insertUser(
 
 // manually code a list of entrants, pull their stats from riot api, then write into the database
 async function writeStats() {
-  let playerStats = [];
+  const playerStats = [];
   const usernames: UsernameEntry[] = [
     { name: "AarontheN00b", tag: "NA1" },
     { name: "Jamesavian", tag: "NA1" },

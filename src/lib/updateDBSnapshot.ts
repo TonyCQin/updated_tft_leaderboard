@@ -21,6 +21,7 @@ export const updateDatabaseSnapshotPoints = async (
     return {
       info: {
         userinfo: JSON.stringify(updatedInfo),
+        result,
       },
     };
   } catch (error) {

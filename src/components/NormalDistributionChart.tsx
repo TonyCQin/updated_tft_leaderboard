@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import type { TooltipItem } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useMemo, useEffect, useState } from "react";
 
@@ -203,11 +204,23 @@ export default function NormalDistributionChart({
       },
       tooltip: {
         callbacks: {
-          label: (context: any) => {
-            const { raw } = context;
-            if (raw.name && raw.rank) {
+          label: (context: TooltipItem<"line">) => {
+            const raw = context.raw as {
+              x: number;
+              y: number;
+              name?: string;
+              rank?: string;
+            };
+
+            if (
+              raw &&
+              typeof raw === "object" &&
+              "name" in raw &&
+              "rank" in raw
+            ) {
               return `${raw.name} (${raw.rank})`;
             }
+
             return `x: ${raw.x}, y: ${raw.y.toExponential(2)}`;
           },
         },

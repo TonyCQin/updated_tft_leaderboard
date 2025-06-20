@@ -25,7 +25,6 @@ export default function PlayerDistribution() {
         const data: Player[] = await res.json();
         setData(data);
         const players = data.map((p) => {
-          const tierKey = `${p.tier.toLowerCase()}_${p.rank.toLowerCase()}`; // e.g., "gold_ii"
           return {
             username: p.username,
             rank: p.rank,

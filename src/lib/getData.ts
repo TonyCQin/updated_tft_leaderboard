@@ -1,6 +1,13 @@
 import clientPromise from "./mongodb";
 
-type UserInfo = Record<string, any>;
+type UserInfo = {
+  username: string;
+  tag: string;
+  tier: string;
+  rank: string;
+  leaguePoints: number;
+  orderingScore: number;
+};
 
 export async function getData(): Promise<{ info: { userinfo: string } }> {
   try {
