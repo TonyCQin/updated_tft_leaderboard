@@ -5,16 +5,24 @@ import RankLeaderboard from "@/components/RankLeaderboard";
 import { formatRank } from "@/lib/formatData";
 import Navbar from "@/components/Navbar";
 
+type Player = {
+  username: string;
+  tag?: string;
+  tier: string;
+  rank: string;
+  orderingScore: number;
+};
+
 export default function PlayerDistribution() {
-  const [players, setPlayers] = useState<any[]>([]);
-  const [playerData, setData] = useState([]);
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [playerData, setData] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPlayers() {
       try {
         const res = await fetch("/api/getData");
-        const data = await res.json();
+        const data: Player[] = await res.json();
         setData(data);
         const players = data.map((p) => {
           const tierKey = `${p.tier.toLowerCase()}_${p.rank.toLowerCase()}`; // e.g., "gold_ii"
