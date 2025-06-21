@@ -12,6 +12,7 @@ import {
 import type { TooltipItem } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useMemo, useEffect, useState } from "react";
+import { calculateScore } from "@/lib/scoreUtils";
 
 ChartJS.register(
   LineElement,
@@ -22,15 +23,19 @@ ChartJS.register(
   Legend
 );
 
+interface Player {
+  username: string;
+  tag: string;
+  tier: string;
+  rank: string;
+  leaguePoints: number;
+  snapshotPoints: number;
+}
+
 type NormalDistributionChartProps = {
   mean?: number;
   stdDev?: number;
-  players?: {
-    username: string;
-    rank: string;
-    tier: string;
-    orderingScore: number;
-  }[];
+  players?: Player[];
 };
 
 function gaussianPDF(x: number, mean: number, stdDev: number): number {
@@ -159,8 +164,12 @@ export default function NormalDistributionChart({
 
     const playerPoints =
       players?.map((p) => ({
-        x: p.orderingScore,
-        y: gaussianPDF(p.orderingScore, mean, stdDev),
+        x: calculateScore(p.tier, p.rank, p.leaguePoints),
+        y: gaussianPDF(
+          calculateScore(p.tier, p.rank, p.leaguePoints),
+          mean,
+          stdDev
+        ),
         name: p.username,
         rank: `${p.tier} ${p.rank}`,
       })) || [];

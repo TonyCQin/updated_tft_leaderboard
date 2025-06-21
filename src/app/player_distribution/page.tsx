@@ -5,17 +5,18 @@ import RankLeaderboard from "@/components/RankLeaderboard";
 import { formatRank } from "@/lib/formatData";
 import Navbar from "@/components/Navbar";
 
-type Player = {
+interface Player {
   username: string;
-  tag?: string;
+  tag: string;
   tier: string;
   rank: string;
+  leaguePoints: number;
+  snapshotPoints: number;
   orderingScore: number;
-};
+}
 
 export default function PlayerDistribution() {
   const [players, setPlayers] = useState<Player[]>([]);
-  const [playerData, setData] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,16 +24,7 @@ export default function PlayerDistribution() {
       try {
         const res = await fetch("/api/getData");
         const data: Player[] = await res.json();
-        setData(data);
-        const players = data.map((p) => {
-          return {
-            username: p.username,
-            rank: p.rank,
-            tier: p.tier,
-            orderingScore: p.orderingScore,
-          };
-        });
-        setPlayers(players);
+        setPlayers(data);
       } catch (err) {
         console.error("Failed to fetch players:", err);
       } finally {
@@ -52,7 +44,7 @@ export default function PlayerDistribution() {
       <Navbar></Navbar>
       <NormalDistributionChart players={players}></NormalDistributionChart>
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <RankLeaderboard players={formatRank(playerData)} />
+        <RankLeaderboard players={formatRank(players)} />
       </div>
     </div>
   );
