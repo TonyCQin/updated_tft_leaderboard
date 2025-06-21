@@ -184,7 +184,6 @@ export default function NormalDistributionChart({
           backgroundColor: "transparent",
           tension: 0.2,
           pointRadius: 0,
-          parsing: false,
         },
         {
           label: "Players",
@@ -196,7 +195,6 @@ export default function NormalDistributionChart({
           borderColor: "#2563eb",
           pointRadius: 6,
           pointHoverRadius: 8,
-          parsing: false,
         },
       ],
     };
@@ -237,7 +235,7 @@ export default function NormalDistributionChart({
     },
     scales: {
       x: {
-        type: "linear",
+        type: "linear" as const,
         ticks: {
           color: colors.muted,
         },
