@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { getData } from "@/lib/getData";
 import { getStats } from "@/lib/getStats";
 import clientPromise from "@/lib/mongodb";

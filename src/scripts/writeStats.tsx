@@ -53,15 +53,15 @@ async function insertUser(
 async function writeStats() {
   const playerStats = [];
   const usernames: UsernameEntry[] = [
-    { name: "AarontheN00b", tag: "NA1" },
-    { name: "Jamesavian", tag: "NA1" },
     { name: "TheSaltyPika", tag: "NA1" },
-    { name: "anstew", tag: "tft" },
-    { name: "Fatalblaze", tag: "NA1" },
-    { name: "Heavyguns", tag: "NA1" },
+    { name: "flamevenomspider", tag: "NA1" },
+    { name: "hung", tag: "002" },
+    { name: "Haabadee", tag: "4856" },
     { name: "baba", tag: "aware" },
-    { name: "hieu", tag: "ttv" },
-    { name: "Mikan", tag: "8827" },
+    { name: "Danbot110", tag: "NA1" },
+    { name: "Unsheathed", tag: "NA1" },
+    { name: "Jamesavian", tag: "NA1" },
+    { name: "jason", tag: "0123" },
   ];
 
   for (const username of usernames) {

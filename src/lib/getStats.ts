@@ -23,28 +23,13 @@ export async function getStats(
     const puuidData = await idRes.json();
     const puuid = puuidData.puuid;
 
-    const summonerRes = await fetch(
-      `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-puuid/${puuid}${apiKey}`
-    );
-    if (!summonerRes.ok) {
-      throw new Error(
-        `Failed to fetch summoner info: ${summonerRes.statusText}`
-      );
-    }
-    const summonerData = await summonerRes.json();
-    const summonerId = summonerData.id;
-
     const statsRes = await fetch(
-      `https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/${summonerId}${apiKey}`
-    );
-    console.log(
-      `https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/${summonerId}${apiKey}`
+      `https://na1.api.riotgames.com/tft/league/v1/by-puuid/${puuid}${apiKey}`
     );
     if (!statsRes.ok) {
       throw new Error(`Failed to fetch ranked stats: ${statsRes.statusText}`);
     }
     const statsData = await statsRes.json();
-    console.log(statsData);
 
     const rankedStats = statsData.find(
       (entry: RankedTFTStats) => entry.queueType === "RANKED_TFT"
